@@ -46,7 +46,7 @@ jobs:
         run: |
           Rscript -e '
             remotes::install_deps(
-              dependencies = c("Depends", "Imports", "LinkingTo", "Suggests"),
+              dependencies = TRUE,  # Suggests for ndr only; a vector here recurses Suggests through every dependency
               upgrade = "never"
             )
           '
