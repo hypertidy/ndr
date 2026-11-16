@@ -37,6 +37,7 @@ reference:
   - cf_decode_time
   - lazy-data
   - collect
+  - nd_plan
 - title: Methods
   contents:
   - ndim
