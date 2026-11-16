@@ -7,7 +7,13 @@ coordinates - that's DataArray's job.
 ## Usage
 
 ``` r
-Variable(dims = character(0), data = NULL, attrs = list(), encoding = list())
+Variable(
+  dims = character(0),
+  data = NULL,
+  attrs = list(),
+  encoding = list(),
+  source = NULL
+)
 ```
 
 ## Arguments
@@ -20,7 +26,7 @@ Variable(dims = character(0), data = NULL, attrs = list(), encoding = list())
 
   An R array (or matrix, or vector with dim attribute), or a lazy
   chunked array from the altarr package (see
-  [lazy-data](https://mdsumner.github.io/ndr/reference/lazy-data.md)).
+  [lazy-data](https://hypertidy.github.io/ndr/reference/lazy-data.md)).
 
 - attrs:
 
@@ -29,6 +35,17 @@ Variable(dims = character(0), data = NULL, attrs = list(), encoding = list())
 - encoding:
 
   Named list of on-disk encoding info (scale_factor, etc.).
+
+- source:
+
+  Where lazy data comes from, or `NULL`: set by
+  [`open_dataset()`](https://hypertidy.github.io/ndr/reference/open_dataset.md)
+  and carried through
+  [`isel()`](https://hypertidy.github.io/ndr/reference/indexing.md) and
+  [`sel()`](https://hypertidy.github.io/ndr/reference/indexing.md), so
+  that
+  [`nd_plan()`](https://hypertidy.github.io/ndr/reference/nd_plan.md)
+  can say what reading it will cost. Not for setting by hand.
 
 ## Examples
 

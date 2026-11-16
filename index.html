@@ -10,8 +10,8 @@
 <script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Named-Dimension Arrays with Coordinate-Based Indexing">
-<meta name="description" content="Provides Variable, DataArray, and Dataset classes for N-dimensional arrays with named dimensions and coordinate-based indexing. Arithmetic operations broadcast by dimension name, not position. Designed as a minimal foundation for lazy, multi-file scientific data access — the core data structures without any file backends.">
-<meta property="og:description" content="Provides Variable, DataArray, and Dataset classes for N-dimensional arrays with named dimensions and coordinate-based indexing. Arithmetic operations broadcast by dimension name, not position. Designed as a minimal foundation for lazy, multi-file scientific data access — the core data structures without any file backends.">
+<meta name="description" content="Provides Variable, DataArray, and Dataset classes for N-dimensional arrays with named dimensions and coordinate-based indexing. Arithmetic operations broadcast by dimension name, not position. Designed as a minimal foundation for lazy, multi-file scientific data access - the core data structures without any file backends.">
+<meta property="og:description" content="Provides Variable, DataArray, and Dataset classes for N-dimensional arrays with named dimensions and coordinate-based indexing. Arithmetic operations broadcast by dimension name, not position. Designed as a minimal foundation for lazy, multi-file scientific data access - the core data structures without any file backends.">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -21,7 +21,7 @@
 
     <a class="navbar-brand me-2" href="index.html">ndr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9013</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/mdsumner/ndr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/hypertidy/ndr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -55,14 +55,14 @@
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"mdsumner/ndr"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hypertidy/ndr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h2>
 <p>A <code>Variable</code> is an N-dimensional array that knows its dimension names.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mdsumner/ndr" class="external-link">ndr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hypertidy/ndr" class="external-link">ndr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">temp_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html" class="external-link">array</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">365</span> <span class="op">*</span> <span class="fl">180</span> <span class="op">*</span> <span class="fl">360</span><span class="op">)</span>, dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">365</span>, <span class="fl">180</span>, <span class="fl">360</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Variable.html">Variable</a></span><span class="op">(</span></span>
@@ -85,7 +85,7 @@
 <div class="section level2">
 <h2 id="coordinates">Coordinates<a class="anchor" aria-label="anchor" href="#coordinates"></a>
 </h2>
-<p><code>ImplicitCoord</code> defines regular grids with zero memory — just offset, step, and count. <code>ExplicitCoord</code> holds arbitrary coordinate values.</p>
+<p><code>ImplicitCoord</code> defines regular grids with zero memory - just offset, step, and count. <code>ExplicitCoord</code> holds arbitrary coordinate values.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lat</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ImplicitCoord.html">ImplicitCoord</a></span><span class="op">(</span>dimension <span class="op">=</span> <span class="st">"lat"</span>, n <span class="op">=</span> <span class="fl">180L</span>, offset <span class="op">=</span> <span class="op">-</span><span class="fl">89.5</span>, step <span class="op">=</span> <span class="fl">1.0</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/coord_values.html">coord_values</a></span><span class="op">(</span><span class="va">lat</span><span class="op">)</span></span>
@@ -146,7 +146,7 @@
 <div class="section level2">
 <h2 id="broadcasting">Broadcasting<a class="anchor" aria-label="anchor" href="#broadcasting"></a>
 </h2>
-<p>Arithmetic broadcasts by dimension name. A 3D temperature field times a 2D land mask just works — dimensions are aligned by name, not position.</p>
+<p>Arithmetic broadcasts by dimension name. A 3D temperature field times a 2D land mask just works - dimensions are aligned by name, not position.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/Variable.html">Variable</a></span><span class="op">(</span></span>
 <span>  dims <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"time"</span>, <span class="st">"lat"</span>, <span class="st">"lon"</span><span class="op">)</span>,</span>
@@ -303,8 +303,8 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/mdsumner/ndr/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/mdsumner/ndr/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/hypertidy/ndr/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/hypertidy/ndr/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 

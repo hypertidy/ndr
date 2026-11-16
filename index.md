@@ -10,7 +10,7 @@ dimension name, not position.
 
 ``` r
 ## install.packages("remotes")
-remotes::install_github("mdsumner/ndr")
+remotes::install_github("hypertidy/ndr")
 ```
 
 ## Variables
@@ -44,7 +44,7 @@ s
 
 ## Coordinates
 
-`ImplicitCoord` defines regular grids with zero memory — just offset,
+`ImplicitCoord` defines regular grids with zero memory - just offset,
 step, and count. `ExplicitCoord` holds arbitrary coordinate values.
 
 ``` r
@@ -110,7 +110,7 @@ da
 ## Broadcasting
 
 Arithmetic broadcasts by dimension name. A 3D temperature field times a
-2D land mask just works — dimensions are aligned by name, not position.
+2D land mask just works - dimensions are aligned by name, not position.
 
 ``` r
 temp <- Variable(
@@ -135,10 +135,10 @@ temp * 2
 
 ## Indexing
 
-[`sel()`](https://mdsumner.github.io/ndr/reference/indexing.md) selects
+[`sel()`](https://hypertidy.github.io/ndr/reference/indexing.md) selects
 by coordinate value.
-[`isel()`](https://mdsumner.github.io/ndr/reference/indexing.md) selects
-by integer index.
+[`isel()`](https://hypertidy.github.io/ndr/reference/indexing.md)
+selects by integer index.
 
 ``` r
 v <- Variable(dims = c("lat", "lon"), data = matrix(1:12, 3, 4))
@@ -178,10 +178,10 @@ isel(da, lat = 2, lon = 3)
 ## Reductions
 
 Reduce along named dimensions with
-[`nd_mean()`](https://mdsumner.github.io/ndr/reference/reductions.md),
-[`nd_sum()`](https://mdsumner.github.io/ndr/reference/reductions.md),
-[`nd_min()`](https://mdsumner.github.io/ndr/reference/reductions.md),
-[`nd_max()`](https://mdsumner.github.io/ndr/reference/reductions.md).
+[`nd_mean()`](https://hypertidy.github.io/ndr/reference/reductions.md),
+[`nd_sum()`](https://hypertidy.github.io/ndr/reference/reductions.md),
+[`nd_min()`](https://hypertidy.github.io/ndr/reference/reductions.md),
+[`nd_max()`](https://hypertidy.github.io/ndr/reference/reductions.md).
 
 ``` r
 temp <- Variable(
@@ -267,11 +267,11 @@ laziness come from other packages:
 
 - [altarr](https://github.com/hypertidy/altarr): a `Variable`’s data can
   be a lazy chunked altarr array, kept lazy through
-  [`isel()`](https://mdsumner.github.io/ndr/reference/indexing.md),
-  [`sel()`](https://mdsumner.github.io/ndr/reference/indexing.md) and
+  [`isel()`](https://hypertidy.github.io/ndr/reference/indexing.md),
+  [`sel()`](https://hypertidy.github.io/ndr/reference/indexing.md) and
   reductions (see `?lazy-data`).
 - [GDAL7](https://github.com/rgdal-dev/GDAL7):
-  [`open_dataset()`](https://mdsumner.github.io/ndr/reference/open_dataset.md)
+  [`open_dataset()`](https://hypertidy.github.io/ndr/reference/open_dataset.md)
   reads through GDAL’s multidimensional API, using
   [`GDAL7::as_altarr()`](https://rgdal-dev.github.io/GDAL7/reference/as_altarr.html)
   for lazy data.

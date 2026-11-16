@@ -2,9 +2,9 @@
 
 An index maps coordinate labels to integer positions along one or more
 dimensions. It is the object that
-[`sel()`](https://mdsumner.github.io/ndr/reference/indexing.md) asks
+[`sel()`](https://hypertidy.github.io/ndr/reference/indexing.md) asks
 "which positions?", that
-[`isel()`](https://mdsumner.github.io/ndr/reference/indexing.md) asks
+[`isel()`](https://hypertidy.github.io/ndr/reference/indexing.md) asks
 "what are you after this subset?", and that arithmetic asks "are these
 two objects on the same grid?". The design follows xarray's Index API
 (`sel`, `isel`, `equals`, `create_variables`), kept small so that other
@@ -51,11 +51,11 @@ index_equals(x, y)
 ## Details
 
 Every entry in a DataArray or Dataset `coords` list is an `Index`.
-[ImplicitCoord](https://mdsumner.github.io/ndr/reference/ImplicitCoord.md)
+[ImplicitCoord](https://hypertidy.github.io/ndr/reference/ImplicitCoord.md)
 and
-[ExplicitCoord](https://mdsumner.github.io/ndr/reference/ExplicitCoord.md)
+[ExplicitCoord](https://hypertidy.github.io/ndr/reference/ExplicitCoord.md)
 are one-dimensional indexes;
-[AffineIndex](https://mdsumner.github.io/ndr/reference/AffineIndex.md)
+[AffineIndex](https://hypertidy.github.io/ndr/reference/AffineIndex.md)
 owns two dimensions at once through a geotransform.
 
 An index implements these generics:

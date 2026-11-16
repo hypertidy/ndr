@@ -1,9 +1,9 @@
 # Combine two regular coordinates into an AffineIndex
 
 Replaces the two
-[ImplicitCoord](https://mdsumner.github.io/ndr/reference/ImplicitCoord.md)s
+[ImplicitCoord](https://hypertidy.github.io/ndr/reference/ImplicitCoord.md)s
 for `dims` with one
-[AffineIndex](https://mdsumner.github.io/ndr/reference/AffineIndex.md),
+[AffineIndex](https://hypertidy.github.io/ndr/reference/AffineIndex.md),
 so the grid and its CRS are carried, selected and compared as one thing.
 
 ## Usage

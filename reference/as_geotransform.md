@@ -13,7 +13,7 @@ as_geotransform(x)
 - x:
 
   An
-  [AffineIndex](https://mdsumner.github.io/ndr/reference/AffineIndex.md)
+  [AffineIndex](https://hypertidy.github.io/ndr/reference/AffineIndex.md)
 
 ## Value
 

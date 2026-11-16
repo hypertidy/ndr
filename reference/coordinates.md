@@ -1,7 +1,7 @@
 # Coordinate classes
 
 A Coordinate is a one-dimensional
-[Index](https://mdsumner.github.io/ndr/reference/indexes.md). It maps
+[Index](https://hypertidy.github.io/ndr/reference/indexes.md). It maps
 integer indices to meaningful values along a dimension. Two
 representations:
 

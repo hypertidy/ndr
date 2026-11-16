@@ -19,7 +19,7 @@ DataArray(variable = Variable(), coords = list(), name = character(0))
 - coords:
 
   Named list of
-  [indexes](https://mdsumner.github.io/ndr/reference/indexes.md)
+  [indexes](https://hypertidy.github.io/ndr/reference/indexes.md)
   (ImplicitCoord, ExplicitCoord, AffineIndex, ...). Each index's dims
   must be among the Variable's `dims`, with matching sizes.
 

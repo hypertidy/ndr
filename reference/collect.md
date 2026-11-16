@@ -26,4 +26,4 @@ An object of the same class with data in memory.
 
 ## See also
 
-[lazy-data](https://mdsumner.github.io/ndr/reference/lazy-data.md)
+[lazy-data](https://hypertidy.github.io/ndr/reference/lazy-data.md)

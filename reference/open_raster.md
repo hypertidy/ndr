@@ -2,7 +2,7 @@
 
 Opens one band of a classic (2D) GDAL raster, such as a GeoTIFF or COG,
 as a DataArray with lazy altarr data and an
-[AffineIndex](https://mdsumner.github.io/ndr/reference/AffineIndex.md)
+[AffineIndex](https://hypertidy.github.io/ndr/reference/AffineIndex.md)
 built from the dataset's geotransform and CRS. Nothing but metadata is
 read until values are asked for.
 

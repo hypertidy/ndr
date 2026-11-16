@@ -27,7 +27,7 @@ Dataset(data_vars = list(), coords = list(), attrs = list(), .backend = NULL)
 - .backend:
 
   Backend reader (internal, created by
-  [`open_dataset()`](https://mdsumner.github.io/ndr/reference/open_dataset.md)).
+  [`open_dataset()`](https://hypertidy.github.io/ndr/reference/open_dataset.md)).
 
 ## Examples
 
