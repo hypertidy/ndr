@@ -80,3 +80,41 @@ test_that("comparison ops work on Variables", {
   result <- v > 10
   expect_equal(as.array(result), array(c(FALSE, FALSE, FALSE, TRUE, TRUE)))
 })
+
+test_that("rray and base broadcasting engines agree exactly", {
+  skip_if_not_installed("rray")
+  vals <- list(
+    dbl = c(1.5, NA, -2, 0, 3, 4),
+    int = c(1L, NA, -2L, 0L, 3L, 4L),
+    lgl = c(TRUE, NA, FALSE, TRUE, FALSE, TRUE)
+  )
+  ops <- c("+", "-", "*", "/", "^", "%%", "%/%",
+           "==", "!=", "<", "<=", ">", ">=")
+  for (ta in names(vals)) for (tb in names(vals)) for (o in ops) {
+    # (time, lat) against (lon, lat): exercises permute, insert and broadcast
+    a <- Variable(dims = c("time", "lat"), data = matrix(vals[[ta]], 2, 3))
+    b <- Variable(dims = c("lon", "lat"), data = matrix(vals[[tb]], 2, 3))
+    f <- get(o, envir = baseenv())
+    withr_engine <- function(engine) {
+      old <- options(ndr.broadcast = engine)
+      on.exit(options(old))
+      f(a, b)
+    }
+    r_rray <- withr_engine("rray")
+    r_base <- withr_engine("base")
+    expect_identical(r_rray@dims, r_base@dims, info = paste(ta, o, tb))
+    expect_identical(var_values(r_rray), var_values(r_base), info = paste(ta, o, tb))
+  }
+})
+
+test_that("ndr.broadcast = 'base' bypasses rray", {
+  old <- options(ndr.broadcast = "base")
+  on.exit(options(old))
+  expect_null(ndr:::rray_op(base::`+`))
+})
+
+test_that("operators without an rray equivalent use the base path", {
+  expect_null(ndr:::rray_op_name(base::`%%`))
+  expect_null(ndr:::rray_op_name(base::`%/%`))
+  expect_identical(ndr:::rray_op_name(base::`*`), "rray_multiply")
+})

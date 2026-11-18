@@ -23,6 +23,7 @@ Suggests:
     GDAL7,
     jsonlite,
     RSQLite,
+    rray,
     zaro (>= 0.0.1.9035),
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

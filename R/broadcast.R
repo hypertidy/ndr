@@ -146,14 +146,65 @@ broadcast_op <- function(a, b, op) {
     return(Variable(dims = character(), data = array(op(var_values(a), var_values(b)))))
   }
 
+  # ndr's job: align by dimension name (permute, insert size-1 dims)
   a_aligned <- align_data(a, out_dims)
   b_aligned <- align_data(b, out_dims)
 
-  a_broad <- broadcast_array(a_aligned, dim(a_aligned), unname(out_shape))
-  b_broad <- broadcast_array(b_aligned, dim(b_aligned), unname(out_shape))
-
-  result <- op(a_broad, b_broad)
-  if (length(out_shape) > 0L) dim(result) <- unname(out_shape)
+  # the positional broadcast and the arithmetic: rray if available
+  rray_fun <- rray_op(op)
+  if (!is.null(rray_fun)) {
+    result <- rray_fun(a_aligned, b_aligned)
+  } else {
+    a_broad <- broadcast_array(a_aligned, dim(a_aligned), unname(out_shape))
+    b_broad <- broadcast_array(b_aligned, dim(b_aligned), unname(out_shape))
+    result <- op(a_broad, b_broad)
+  }
+  dim(result) <- unname(out_shape)
 
   Variable(dims = out_dims, data = result)
+}
+
+
+#' Positional broadcasting engine
+#'
+#' ndr aligns operands by dimension name (see `align_data()`), after which
+#' both arrays have the same rank and the remaining work is positional
+#' broadcasting of size-1 dimensions. When the rray package is installed,
+#' that step and the operation itself are done by rray, which broadcasts
+#' without first expanding both operands to the full output shape. Results
+#' are identical to the base R path, including type.
+#'
+#' Set `options(ndr.broadcast = "base")` to always use the base R path.
+#' Operators rray has no equivalent for (`%%`, `%/%`) use the base path.
+#'
+#' @param op A binary base operator, e.g. `base::\`+\``.
+#' @return An rray function, or `NULL` to use the base path.
+#' @keywords internal
+#' @noRd
+rray_op <- function(op) {
+  if (identical(getOption("ndr.broadcast", "rray"), "base")) return(NULL)
+  if (!requireNamespace("rray", quietly = TRUE)) return(NULL)
+  name <- rray_op_name(op)
+  if (is.null(name)) return(NULL)
+  getExportedValue("rray", name)
+}
+
+rray_op_name <- function(op) {
+  ops <- list(
+    `+`  = "rray_add",
+    `-`  = "rray_subtract",
+    `*`  = "rray_multiply",
+    `/`  = "rray_divide",
+    `^`  = "rray_exponentiate",
+    `==` = "rray_equal",
+    `!=` = "rray_not_equal",
+    `<`  = "rray_less_than",
+    `<=` = "rray_less_than_or_equal",
+    `>`  = "rray_greater_than",
+    `>=` = "rray_greater_than_or_equal"
+  )
+  for (nm in names(ops)) {
+    if (identical(op, get(nm, envir = baseenv()))) return(ops[[nm]])
+  }
+  NULL
 }
